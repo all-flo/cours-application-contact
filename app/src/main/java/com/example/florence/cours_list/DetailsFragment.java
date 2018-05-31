@@ -88,7 +88,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
             c.setTelephone(phone.getText().toString());
 
 
-            c.update();
+            c.save();
             Toast.makeText(activity,"Contact modifié",Toast.LENGTH_SHORT).show();
             activity.finish();
         }

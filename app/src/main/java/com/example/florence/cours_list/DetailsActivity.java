@@ -14,9 +14,10 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     TextView name, firstname,phone;
     Contact c;
-    Long id;
+
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_activity);
 
@@ -30,8 +31,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         Button modif_button=(Button)findViewById(R.id.modifier);
         modif_button.setOnClickListener((View.OnClickListener)this);
 
-       //c = (Contact) getIntent().getSerializableExtra("Contact");
-        id = (Long) getIntent().getLongExtra("contactid", 0);
+
+        Long id = (Long) getIntent().getLongExtra("contactid", 0);
         c = Contact.findById(Contact.class,id);
 
         name = (EditText) findViewById(R.id.nom);
@@ -53,7 +54,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             c.setTelephone(phone.getText().toString());
 
 
-            c.update();
+            c.save();
             Toast.makeText(getApplicationContext(),"Contact modifié",Toast.LENGTH_SHORT).show();
             finish();
 
@@ -63,7 +64,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             c.delete();
             Toast.makeText(getApplicationContext(),"Contact supprimé",Toast.LENGTH_SHORT).show();
             finish();
-            //v.invalidate();
+
         }
     }
 

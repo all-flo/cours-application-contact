@@ -5,10 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener{
 
-    EditText name, firstname,phone;
+    TextView name, firstname,phone;
     Contact c;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +22,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
         c = (Contact) getIntent().getSerializableExtra("Contact");
 
-        name = (EditText) findViewById(R.id.nom);
-        firstname = (EditText) findViewById(R.id.prenom);
-        phone = (EditText) findViewById(R.id.tel);
+        name = (TextView) findViewById(R.id.nom);
+        firstname = (TextView) findViewById(R.id.prenom);
+        phone = (TextView) findViewById(R.id.tel);
 
         name.setText(c.getNom());
         firstname.setText(c.getPrenom());

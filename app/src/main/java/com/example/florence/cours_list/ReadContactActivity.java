@@ -123,7 +123,7 @@ public class ReadContactActivity extends AppCompatActivity {
                 @Override
                 public void afterTextChanged(Editable editable) {
 
-                    
+
                 }
             });
 

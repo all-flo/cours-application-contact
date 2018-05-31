@@ -43,8 +43,7 @@ public class ReadContactActivity extends AppCompatActivity {
             setContentView(R.layout.read_contact_activity);
 
             //bouton search
-            Button search_button=(Button)findViewById(R.id.search);
-            search_button.setOnClickListener((View.OnClickListener)this);
+
 
             //textView
             critereTV = (EditText) findViewById(R.id.critere);
@@ -108,8 +107,8 @@ public class ReadContactActivity extends AppCompatActivity {
                     }
                 });
 
-            String critere= critereTV.getText().toString().toLowerCase(Locale.getDefault());
-            critereTV.addTextChangedListener(new TextWatcher() {
+            //String critere= critereTV.getText().toString().toLowerCase(Locale.getDefault());
+            /*critereTV.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence cs, int i, int i1, int i2) {
 
@@ -125,7 +124,7 @@ public class ReadContactActivity extends AppCompatActivity {
 
 
                 }
-            });
+            });*/
 
 
         }

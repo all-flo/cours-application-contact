@@ -18,11 +18,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <TextView
+                <EditText
                     android:id="@+id/prenom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Name" />
 
             </TableRow>
 
@@ -30,11 +32,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <TextView
+                <EditText
                     android:id="@+id/nom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Name" />
 
             </TableRow>
 
@@ -42,11 +46,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <TextView
+                <EditText
                     android:id="@+id/tel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:ems="10"
+                    android:inputType="textPersonName|phone"
+                    android:text="Name" />
 
             </TableRow>
 

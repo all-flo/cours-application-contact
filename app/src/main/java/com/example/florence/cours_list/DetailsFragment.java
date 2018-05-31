@@ -21,6 +21,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
     Contact c;
     Long id;
 
+    TextView name,firstname,phone;
+
     public DetailsFragment(){}
 
     public View onCreateView(LayoutInflater inflater,
@@ -33,9 +35,9 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.details_fragment, container, false);
 
 
-        TextView nom = (TextView) view.findViewById(R.id.nom);
-        TextView prenom = (TextView) view.findViewById(R.id.prenom);
-        TextView tel = (TextView) view.findViewById(R.id.tel);
+        name = (EditText) view.findViewById(R.id.nom);
+        firstname = (EditText) view.findViewById(R.id.prenom);
+        phone = (EditText) view.findViewById(R.id.tel);
 
         Button suppr_button=(Button)view.findViewById(R.id.supprimer);
         suppr_button.setOnClickListener((View.OnClickListener)this);
@@ -54,9 +56,9 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
 
 
 
-        nom.setText(Snom);
-        prenom.setText(Sprenom);
-        tel.setText(Stel);
+        name.setText(Snom);
+        firstname.setText(Sprenom);
+        phone.setText(Stel);
 
 
 
@@ -67,11 +69,13 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        Activity activity = getActivity();
+        c = Contact.findById(Contact.class,id);
         //supprime le contact
         if (v.getId()==R.id.supprimer){
-            c = Contact.findById(Contact.class,id);
+
             c.delete();
-            Activity activity = getActivity();
+
             Toast.makeText(activity,"Contact supprimé",Toast.LENGTH_SHORT).show();
             activity.finish();
             //v.invalidate();
@@ -79,7 +83,14 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
         //affiche une activité modifier
         if (v.getId()==R.id.modifier)
         {
+            c.setNom(name.getText().toString());
+            c.setPrenom(firstname.getText().toString());
+            c.setTelephone(phone.getText().toString());
 
+
+            c.update();
+            Toast.makeText(activity,"Contact modifié",Toast.LENGTH_SHORT).show();
+            activity.finish();
         }
     }
 }

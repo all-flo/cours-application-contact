@@ -34,9 +34,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         id = (Long) getIntent().getLongExtra("contactid", 0);
         c = Contact.findById(Contact.class,id);
 
-        name = (TextView) findViewById(R.id.nom);
-        firstname = (TextView) findViewById(R.id.prenom);
-        phone = (TextView) findViewById(R.id.tel);
+        name = (EditText) findViewById(R.id.nom);
+        firstname = (EditText) findViewById(R.id.prenom);
+        phone = (EditText) findViewById(R.id.tel);
 
         name.setText(c.getNom());
         firstname.setText(c.getPrenom());
@@ -45,23 +45,18 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        String nom,prenom,tel;
+
         if (v.getId()==R.id.modifier){
-            /*
-            name = (EditText) findViewById(R.id.nom);
-            nom = name.getText().toString();
-            firstname = (EditText) findViewById(R.id.prenom);
-            prenom = firstname.getText().toString();
-            phone = (EditText) findViewById(R.id.tel);
-            tel = phone.getText().toString();
 
-            Contact temp= new Contact();
-            // = Contact.findById(Contact.class,c.getId());
+            c.setNom(name.getText().toString());
+            c.setPrenom(firstname.getText().toString());
+            c.setTelephone(phone.getText().toString());
 
-            temp.setNom(nom);
-            temp.setPrenom(prenom);
-            temp.setTelephone(tel);
-            temp.update();*/
+
+            c.update();
+            Toast.makeText(getApplicationContext(),"Contact modifié",Toast.LENGTH_SHORT).show();
+            finish();
+
         }
         if (v.getId()==R.id.supprimer){
 

@@ -40,7 +40,7 @@ public class AddContactActivity extends AppCompatActivity implements View.OnClic
 
             c = new Contact (n,p,t);
             c.save();
-
+            Toast.makeText(getApplicationContext(),"Contact ajouté",Toast.LENGTH_SHORT).show();
             finish();
         }
     }

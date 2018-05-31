@@ -13,7 +13,7 @@
         <Button
             android:id="@+id/read"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="68dp"
             android:text="Liste Contact"
             tools:layout_editor_absoluteX="147dp"
             tools:layout_editor_absoluteY="230dp" />
@@ -21,7 +21,7 @@
         <Button
             android:id="@+id/add"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="63dp"
             android:text="Ajout Contact"
             tools:layout_editor_absoluteX="147dp"
             tools:layout_editor_absoluteY="96dp" />

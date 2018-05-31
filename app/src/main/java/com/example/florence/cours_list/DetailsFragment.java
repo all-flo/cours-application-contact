@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DetailsFragment extends Fragment{
+public class DetailsFragment extends Fragment implements View.OnClickListener{
 
 
     EditText nom,prenom,tel;
@@ -36,6 +36,7 @@ public class DetailsFragment extends Fragment{
         String Sprenom = getArguments().getString("prenom");
         String Stel = getArguments().getString("tel");
 
+
         nom.setText(Snom);
         prenom.setText(Sprenom);
         tel.setText(Stel);
@@ -46,6 +47,8 @@ public class DetailsFragment extends Fragment{
     }
 
 
+    @Override
+    public void onClick(View v) {
 
-
+    }
 }

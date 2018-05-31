@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,35 +30,23 @@ public class ReadContactActivity extends AppCompatActivity {
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.read_contact_activity);
-
-
-                final List<Contact> contacts = Contact.listAll(Contact.class);
-
-                for (int i = 0; i < contacts.size(); i++) {
-                    Contact c = contacts.get(i);
-                    String nomContact = c.getNom();
-                    String prenomContact = c.getPrenom();
-                    addItem(nomContact, prenomContact);
-                }
-
-                final ListView liste = (ListView) findViewById(R.id.liste);
-
-
-                adapter = new SimpleAdapter(this,
-                        data,
-                        R.layout.cell_content,
-                        new String[]{"name", "firstname"},
-                        new int[]{R.id.textView_name,
-                                R.id.textView_firstname});
-
-                liste.setAdapter(adapter);
-
-                liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            final List<Contact> contacts = Contact.listAll(Contact.class);
+            for (int i = 0; i < contacts.size(); i++) {
+                Contact c = contacts.get(i);
+                String nomContact = c.getNom();
+                String prenomContact = c.getPrenom();
+                addItem(nomContact, prenomContact);
+            }
+            final ListView liste = (ListView) findViewById(R.id.liste);
+            adapter = new SimpleAdapter(this, data, R.layout.cell_content,
+                    new String[]{"name", "firstname"}, new int[]{R.id.textView_name,
+                    R.id.textView_firstname});
+            liste.setAdapter(adapter);
+            liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapter, View v, int position,
                                             long arg3) {
                         Contact c = contacts.get(position);
-
                         String nomContact = c.getNom();
                         String prenomContact = c.getPrenom();
                         String tel = c.getTelephone();
@@ -71,18 +60,15 @@ public class ReadContactActivity extends AppCompatActivity {
 
                         if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE) {
                             if (findViewById(R.id.container) != null) {
-
+                                //clearBackStack();
                                 DetailsFragment DFragment = new DetailsFragment();
                                 FragmentTransaction transaction =getFragmentManager().beginTransaction();
-                                transaction.add(R.id.container, DFragment);
+                                //transaction.add(R.id.container, DFragment);
+                                transaction.replace(R.id.container, DFragment);
                                 transaction.addToBackStack(null);
                                 transaction.commit();
-
                                 String id = c.getId().toString();
-
-
                                 Bundle bundle = new Bundle();
-
                                 bundle.putString("nom", c.getNom());
                                 bundle.putString("prenom", c.getPrenom());
                                 bundle.putString("tel", c.getTelephone());
@@ -104,4 +90,13 @@ public class ReadContactActivity extends AppCompatActivity {
             item.put("firstname", record_fname);
             data.add(item);
         }
+
+
+    private void clearBackStack() {
+        FragmentManager manager = getSupportFragmentManager();
+        if (manager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
+            manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
     }

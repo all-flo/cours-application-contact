@@ -31,17 +31,20 @@ public class ReadContactActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.read_contact_activity);
             final List<Contact> contacts = Contact.listAll(Contact.class);
+            //affiche le nom et prenom des contacts
             for (int i = 0; i < contacts.size(); i++) {
                 Contact c = contacts.get(i);
                 String nomContact = c.getNom();
                 String prenomContact = c.getPrenom();
                 addItem(nomContact, prenomContact);
             }
+
             final ListView liste = (ListView) findViewById(R.id.liste);
             adapter = new SimpleAdapter(this, data, R.layout.cell_content,
                     new String[]{"name", "firstname"}, new int[]{R.id.textView_name,
                     R.id.textView_firstname});
             liste.setAdapter(adapter);
+
             liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapter, View v, int position,
@@ -54,7 +57,8 @@ public class ReadContactActivity extends AppCompatActivity {
                                 prenomContact + nomContact + tel, Toast.LENGTH_LONG).show();
                         if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
                         Intent intent = new Intent(ReadContactActivity.this, DetailsActivity.class);
-                        intent.putExtra("Contact", c);
+                        //intent.putExtra("Contact", c);
+                        intent.putExtra("contactid", c.getId());
                         startActivity(intent);
                         }
 
@@ -67,11 +71,14 @@ public class ReadContactActivity extends AppCompatActivity {
                                 transaction.replace(R.id.container, DFragment);
                                 transaction.addToBackStack(null);
                                 transaction.commit();
-                                String id = c.getId().toString();
+                                //String id = c.getId().toString();
                                 Bundle bundle = new Bundle();
+                                bundle.putLong("id",c.getId());
+
                                 bundle.putString("nom", c.getNom());
                                 bundle.putString("prenom", c.getPrenom());
                                 bundle.putString("tel", c.getTelephone());
+
                                 DFragment.setArguments(bundle);
                             }
                         }
@@ -99,4 +106,11 @@ public class ReadContactActivity extends AppCompatActivity {
             manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recreate();
     }
+
+}

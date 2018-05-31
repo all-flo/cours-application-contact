@@ -55,10 +55,10 @@
                 android:layout_height="match_parent" >
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="modifier" />
 
             </TableRow>
             <TableRow
@@ -66,10 +66,10 @@
                 android:layout_height="match_parent" >
 
                 <Button
-                    android:id="@+id/button1"
+                    android:id="@+id/supprimer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="supprimer" />
 
             </TableRow>
         </TableLayout>

@@ -41,6 +41,7 @@ public class AddContactActivity extends AppCompatActivity implements View.OnClic
             c = new Contact (n,p,t);
             c.save();
 
+            finish();
         }
     }
 }

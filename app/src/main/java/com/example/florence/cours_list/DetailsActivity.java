@@ -6,11 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView name, firstname,phone;
     Contact c;
+    Long id;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +24,15 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         read_button.setOnClickListener((View.OnClickListener)this);
 
 
-        c = (Contact) getIntent().getSerializableExtra("Contact");
+        Button suppr_button=(Button)findViewById(R.id.supprimer);
+        suppr_button.setOnClickListener((View.OnClickListener)this);
+
+        Button modif_button=(Button)findViewById(R.id.modifier);
+        modif_button.setOnClickListener((View.OnClickListener)this);
+
+       //c = (Contact) getIntent().getSerializableExtra("Contact");
+        id = (Long) getIntent().getLongExtra("contactid", 0);
+        c = Contact.findById(Contact.class,id);
 
         name = (TextView) findViewById(R.id.nom);
         firstname = (TextView) findViewById(R.id.prenom);
@@ -35,6 +47,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         String nom,prenom,tel;
         if (v.getId()==R.id.modifier){
+            /*
             name = (EditText) findViewById(R.id.nom);
             nom = name.getText().toString();
             firstname = (EditText) findViewById(R.id.prenom);
@@ -48,17 +61,18 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             temp.setNom(nom);
             temp.setPrenom(prenom);
             temp.setTelephone(tel);
-            temp.update();
+            temp.update();*/
         }
-        if (v.getId()==R.id.suppr){
-            //Contact temp = Contact.findById(Contact.class,c.getId());
+        if (v.getId()==R.id.supprimer){
+
             c.delete();
+            Toast.makeText(getApplicationContext(),"Contact supprimé",Toast.LENGTH_SHORT).show();
+            finish();
+            //v.invalidate();
         }
-
-
-
-
-
-
     }
+
+
+
+
 }

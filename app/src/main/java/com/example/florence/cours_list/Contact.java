@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 import java.io.Serializable;
 
-public class Contact extends SugarRecord implements Serializable{
+public class Contact extends SugarRecord {
 
     String nom;
     String prenom;

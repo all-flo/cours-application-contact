@@ -1,6 +1,5 @@
 package com.example.florence.cours_list;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,14 +16,12 @@ public class AddContactActivity extends AppCompatActivity implements View.OnClic
 
         Button valider_button=(Button)findViewById(R.id.valider);
         valider_button.setOnClickListener((View.OnClickListener)this);
-
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.valider)
         {
-
             Contact c;
 
             String n,p,t;
@@ -36,8 +33,6 @@ public class AddContactActivity extends AppCompatActivity implements View.OnClic
 
             EditText tel = (EditText) findViewById(R.id.tel);
             t = tel.getText().toString();
-
-
             c = new Contact (n,p,t);
             c.save();
             Toast.makeText(getApplicationContext(),"Contact ajouté",Toast.LENGTH_SHORT).show();

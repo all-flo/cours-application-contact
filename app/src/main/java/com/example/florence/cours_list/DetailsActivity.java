@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -21,16 +20,11 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_activity);
 
-        Button read_button=(Button)findViewById(R.id.modifier);
-        read_button.setOnClickListener((View.OnClickListener)this);
-
-
         Button suppr_button=(Button)findViewById(R.id.supprimer);
         suppr_button.setOnClickListener((View.OnClickListener)this);
 
         Button modif_button=(Button)findViewById(R.id.modifier);
         modif_button.setOnClickListener((View.OnClickListener)this);
-
 
         Long id = (Long) getIntent().getLongExtra("contactid", 0);
         c = Contact.findById(Contact.class,id);
@@ -48,27 +42,18 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
 
         if (v.getId()==R.id.modifier){
-
             c.setNom(name.getText().toString());
             c.setPrenom(firstname.getText().toString());
             c.setTelephone(phone.getText().toString());
 
-
             c.save();
             Toast.makeText(getApplicationContext(),"Contact modifié",Toast.LENGTH_SHORT).show();
             finish();
-
         }
         if (v.getId()==R.id.supprimer){
-
             c.delete();
             Toast.makeText(getApplicationContext(),"Contact supprimé",Toast.LENGTH_SHORT).show();
             finish();
-
         }
     }
-
-
-
-
 }

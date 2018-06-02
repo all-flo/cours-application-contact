@@ -2,7 +2,6 @@ package com.example.florence.cours_list;
 
 import com.orm.SugarRecord;
 
-import java.io.Serializable;
 
 public class Contact extends SugarRecord {
 
@@ -34,10 +33,7 @@ public class Contact extends SugarRecord {
         this.prenom = prenom;
     }
 
-    public String getTelephone() {
-
-        return telephone;
-    }
+    public String getTelephone() {return telephone; }
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
